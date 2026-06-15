@@ -1,7 +1,16 @@
 def solution(rows, columns, queries):
+    # 헷갈리지만 나눠보면 간단한 듯?
+    # 일단 행렬을 만들고
+    # 만든 행렬을 시계 방향으로 테두리만 돌려버리는 함수로 돌려버리ㅣ고
+    # 테두리 값들 최솟값만 따로 빼놨다가
+    # return 하면서 최솟값 리스트로 주기
+    
+    #일단 행렬
     arr = [[i for i in range(j*columns+1,j*columns+columns+1)] for j in range(0,rows)]
     answer = []
     min_num = 0
+    
+    # 돌리는 리스트
     def clock_wise_turn(x1, y1, x2, y2, arr):
         temp = 0
         now = arr[x1][y1]
