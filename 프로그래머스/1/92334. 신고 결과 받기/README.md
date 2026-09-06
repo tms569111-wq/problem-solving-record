@@ -1,10 +1,10 @@
 # [level 1] 신고 결과 받기 - 92334 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/92334) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/92334?utm_source=chatgpt.com) 
 
 ### 성능 요약
 
-메모리: 36.2 MB, 시간: 772.79 ms
+메모리: 44.9 MB, 시간: 91.45 ms
 
 ### 구분
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2026년 06월 20일 10:34:13
+2026년 09월 06일 21:51:36
 
 ### 문제 설명
 
