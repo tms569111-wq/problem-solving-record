@@ -1,10 +1,12 @@
 from collections import defaultdict
 def solution(nums):
-    n = len(nums)
-    answer = 0
-    num_dic = defaultdict(str)
-    for num in nums:
-        if num_dic[num] != 'True':
-            answer += 1
-        num_dic[num] = 'True'
-    return min(answer, n // 2) 
+    dic = defaultdict(int)
+    check = len(nums) // 2
+    for i in nums:
+        dic[i] +=1
+    count = 0
+    for key in dic.keys():
+        count += 1
+        if count >= check:
+            return count
+    return count
