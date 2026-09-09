@@ -1,10 +1,10 @@
 # [level 2] H-Index - 42747 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/42747) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/42747?utm_source=chatgpt.com) 
 
 ### 성능 요약
 
-메모리: 11.6 MB, 시간: 0.15 ms
+메모리: 11.7 MB, 시간: 0.24 ms
 
 ### 구분
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2026년 07월 09일 13:02:29
+2026년 09월 09일 20:34:41
 
 ### 문제 설명
 
