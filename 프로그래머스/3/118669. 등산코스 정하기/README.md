@@ -1,10 +1,10 @@
 # [level 3] 등산코스 정하기 - 118669 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/118669) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/118669?utm_source=chatgpt.com) 
 
 ### 성능 요약
 
-메모리: 91.5 MB, 시간: 473.31 ms
+메모리: 91.2 MB, 시간: 302.35 ms
 
 ### 구분
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2026년 07월 21일 07:02:42
+2026년 09월 20일 17:14:01
 
 ### 문제 설명
 
