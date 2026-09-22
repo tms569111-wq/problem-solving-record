@@ -16,17 +16,17 @@
 # 그 뒤 Y는 첫 Y에서 G + Y + R한 거에다가 마지막 Y에다가 G + Y + R 한거
 def solution(signals):
     n = len(signals)
-    time = [0 for _ in range(3000000)]
+    time = [0 for _ in range(30000000)]
     for G, Y, R  in signals:
         last_Y = G + Y
         first_Y = G + 1
         sum_signals = G + Y + R
-        while last_Y < 3000000:
+        while last_Y < 30000000:
             for i in range(first_Y, last_Y + 1):
                 time[i] += 1
             last_Y += sum_signals
             first_Y += sum_signals
-    for i in range(3000000):
+    for i in range(30000000):
         if time[i] == n:
             return i
     answer = -1
