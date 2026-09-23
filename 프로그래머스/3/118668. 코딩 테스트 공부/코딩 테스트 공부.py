@@ -24,39 +24,54 @@
 # 해당 초를 dp로 구하면 각 초에서 도달할 수 있는 최대 알고력과 코딩력 구하고
 # 그걸 바탕으로 정답을 못 구하려나...
 # 이것도 2개라서 빡세네...
+import heapq
 def solution(alp, cop, problems):
-    max_alp = max(p[0] for p in problems)
-    max_cop = max(p[1] for p in problems)
-    alp = min(alp, max_alp)
-    cop = min(cop, max_cop)
+    max_alp = 0
+    max_cop = 0
     
-    INF = float('inf')
-    
-    dp = [
-        [INF] * (max_cop + 1)
-        for _ in range(max_alp + 1)
-    ]
-    
-    dp[alp][cop] = 0
-    for a in range(alp, max_alp + 1):
-        for c in range(cop, max_cop + 1):
-            if a < max_alp:
-                dp[a + 1][c] = min(
-                    dp[a + 1][c],
-                    dp[a][c] + 1
-                )
-            if c < max_cop:
-                dp[a][c + 1] = min(
-                    dp[a][c + 1],
-                    dp[a][c] + 1
-                )
-            for alp_req, cop_req, alp_rwd, cop_rwd, cost in problems:
-                if a >= alp_req and c >= cop_req:
-                    na = min(max_alp, a + alp_rwd)
-                    nc = min(max_cop, c + cop_rwd)
-                    dp[na][nc] = min(
-                        dp[na][nc],
-                        dp[a][c] + cost
-                    )
-    return dp[max_alp][max_cop]
-    
+    for alp_req, cop_req, alp_rwd, cop_rwd, cost in problems:
+        max_alp = max(alp_req, max_alp)
+        max_cop = max(cop_req, max_cop)
+    problems.sort(key = lambda x : (x[0], x[1]))
+    def dijkstra(alp, cop):
+        answer = 1e9
+        heap = [(0, alp, cop)]
+        dist = [[1e9 for _ in range(200)] for _ in range(200)]
+        dist[alp][cop] = 0
+        while heap:
+            cost, now_alp, now_cop = heapq.heappop(heap)
+            
+            if dist[now_alp][now_cop] < cost:
+                continue
+            
+            if now_alp >= max_alp and now_cop >= max_cop:
+                if cost < answer:
+                    answer = cost
+                return answer
+            
+            if now_alp < 190 and dist[now_alp + 1][now_cop] > cost + 1:
+                dist[now_alp + 1][now_cop] = cost + 1
+                heapq.heappush(heap, (cost + 1, now_alp + 1, now_cop))
+                
+            if now_cop < 190 and dist[now_alp][now_cop + 1] > cost + 1:
+                dist[now_alp][now_cop + 1] = cost + 1
+                heapq.heappush(heap, (cost + 1, now_alp, now_cop + 1))
+                
+            for alp_req, cop_req, alp_rwd, cop_rwd, weight in problems:
+                if now_alp < alp_req:
+                    break
+                if now_alp >= alp_req and now_cop >= cop_req:
+                    new_cost = cost + weight
+                    new_alp = min(max_alp, now_alp + alp_rwd)
+                    new_cop = min(max_cop, now_cop + cop_rwd)
+                    if dist[new_alp][new_cop] > new_cost:
+                        dist[new_alp][new_cop] = new_cost
+                        heapq.heappush(heap, (new_cost, new_alp, new_cop))
+                        
+            
+            
+        return answer
+    return dijkstra(alp, cop)
+            
+        
+        
