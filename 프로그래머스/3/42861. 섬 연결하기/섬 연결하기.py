@@ -3,33 +3,36 @@ def solution(n, costs):
     # 프림이나 크루스칼 알고리즘인데 
     # 아 이거 손으로 하면 엄청 쉬운데
     # 코드로 하려니까 막막하네
-    parent = [i for i in range(n)]
-    rank = [0] * n
+    parent = list(range(n + 1))
+    costs.sort(key = lambda x : x[2])
+    size = [1] * (n + 1)
+    answer = 0
+    count = 0
     def find(x):
-        if parent[x] != x:
-            parent[x] = find(parent[x])
-        return parent[x]
-        
-    def union(a,b):
+        root = x
+        while parent[root] != root:
+            root = parent[root]
+        while parent[x] != x:
+            nxt = parent[x]
+            parent[x] = root
+            x = nxt
+        return root
+    def union(a, b):
         root_a = find(a)
         root_b = find(b)
         if root_a == root_b:
             return False
-        parent[root_a] = root_b
+        if size[root_a] < size[root_b]:
+            root_a, root_b = root_b, root_a
+        size[root_b] += size[root_a]
+        parent[root_b] = root_a
         return True
-        
-        
-        
-    answer = 0
-    edge_count = 0
-    costs.sort(key = lambda x:x[2])
     for a, b, cost in costs:
-        if union(a,b):
-            edge_count += 1
+        if union(a, b):
             answer += cost
-            if edge_count == n-1:
-                break
-    return answer
-
-        
+            count += 1
+        if count == n - 1:
+            return answer
             
+    
+    
