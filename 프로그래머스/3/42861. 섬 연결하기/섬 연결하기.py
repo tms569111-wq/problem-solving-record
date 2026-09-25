@@ -24,8 +24,9 @@ def solution(n, costs):
             return False
         if size[root_a] < size[root_b]:
             root_a, root_b = root_b, root_a
-        size[root_b] += size[root_a]
+        
         parent[root_b] = root_a
+        size[root_a] += size[root_b]
         return True
     for a, b, cost in costs:
         if union(a, b):
